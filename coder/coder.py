@@ -5,8 +5,6 @@ from .tree import ShanonFanoTree
 
 
 class ShanonFanoCoder:
-    _tree_type = ShanonFanoTree
-
     def __init__(self):
         self.string = None
 
@@ -25,7 +23,7 @@ class ShanonFanoCoder:
 
         self.string = string
 
-        self.tree = self._tree_type.from_counter_table(counter_table)
+        self.tree = ShanonFanoTree.from_counter_table(counter_table)
         self.codes_table = self.tree.get_codes_table()
 
         self.code_sep = tuple(self.codes_table[c] for c in string)
@@ -57,7 +55,7 @@ class ShanonFanoCoder:
 
     def _load_decoder(self, decoder) -> None:
         if isinstance(decoder, dict):
-            self.tree = self._tree_type.from_codes_table(decoder)
+            self.tree = ShanonFanoTree.from_codes_table(decoder)
             self.codes_table = decoder
         elif isinstance(decoder, ShanonFanoTree):
             self.tree = decoder
