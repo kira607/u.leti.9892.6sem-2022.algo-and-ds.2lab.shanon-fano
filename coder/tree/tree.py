@@ -56,7 +56,6 @@ class ShanonFanoTree:
 
     def _get_leaf(self, code):
         node = self._root
-        print(node.id)
         while not node.is_leaf:
             c = code[0]
             if c == '1':

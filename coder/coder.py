@@ -1,4 +1,3 @@
-from typing import Any, List, Union
 from collections import Counter
 
 from .tree import ShanonFanoTree
@@ -18,7 +17,7 @@ class ShanonFanoCoder:
         self.code_size = None
         self.wrapping_coefficient = None
 
-    def encode(self, string: str) -> Any:
+    def encode(self, string: str):
         counter_table = Counter(string)
 
         self.string = string
@@ -32,7 +31,7 @@ class ShanonFanoCoder:
         self._count_sizes()
         return self
 
-    def decode(self, code, decoder) -> Any:
+    def decode(self, code, decoder):
         self._load_decoder(decoder)
         self._load_code(code)
 
@@ -43,17 +42,7 @@ class ShanonFanoCoder:
         self._count_sizes()
         return self
 
-    def print_info(self):
-        import json
-        print(f'Wrapped coeff: {self.wrapping_coefficient}')
-        print(f'String: {self.string} (length: {len(self.string)}, size: {self.string_size})')
-        print(f'Code:')
-        print(f'    code: {self.code}')
-        print(f'    code_sep: {self.code_sep}')
-        print(f'    code_size: {self.code_size}')
-        print(f'Codes table: {json.dumps(self.tree.get_codes_table(), indent=4)}')
-
-    def _load_decoder(self, decoder) -> None:
+    def _load_decoder(self, decoder):
         if isinstance(decoder, dict):
             self.tree = ShanonFanoTree.from_codes_table(decoder)
             self.codes_table = decoder
@@ -61,7 +50,7 @@ class ShanonFanoCoder:
             self.tree = decoder
             self.codes_table = decoder.get_codes_table()
     
-    def _load_code(self, code: Union[str, List[str]]) -> None:
+    def _load_code(self, code):
         if isinstance(code, str):
             self.code_sep = self.tree.separate(code)
             self.code = code
