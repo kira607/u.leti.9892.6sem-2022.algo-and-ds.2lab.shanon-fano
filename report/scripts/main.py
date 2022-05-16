@@ -115,7 +115,7 @@ def make_decode_example(i, code, decoder):
     sq_code = helpers.squarify_string(code, 50, sep="\\\\\n")
     pic = latex.LatexPicture(
         image=label,
-        caption=f'Пример кодирования строки {i}',
+        caption=f'Пример декодирования строки {i}',
         label=label,
     )
     example = f'\\subsubsection*{{Пример декодирования {i}}}\n\n'
@@ -165,8 +165,8 @@ def write_examples():
 
 
 def main():
-    # write_examples()
-    print(make_complexity_table())
+    write_examples()
+    # print(make_complexity_table())
 
 
 if __name__ == '__main__':
